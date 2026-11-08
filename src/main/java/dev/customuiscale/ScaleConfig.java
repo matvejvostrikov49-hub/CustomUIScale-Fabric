@@ -44,7 +44,9 @@ public final class ScaleConfig {
     }
 
     public static float guiFactor() {
-        return 0.55f + (guiScale() - 1) * (0.45f / 9.0f);
+        float sliderFactor = 0.55f + (guiScale() - 1) * (0.45f / 9.0f);
+        double vanillaScale = net.minecraft.client.Minecraft.getInstance().getWindow().getGuiScale();
+        return (float)(sliderFactor * vanillaScale / 3.0);
     }
 
     public static float inventoryFactor() {
