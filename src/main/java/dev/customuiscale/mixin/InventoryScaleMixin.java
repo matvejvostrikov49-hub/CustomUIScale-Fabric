@@ -24,7 +24,7 @@ public abstract class InventoryScaleMixin {
     private void customuiscale$beginInventoryScale(GuiGraphics graphics, int mouseX, int mouseY, float delta, CallbackInfo ci) {
         PoseStack pose = graphics.pose();
         pose.pushPose();
-        float scale = ScaleConfig.inventoryFactor();
+        float scale = ScaleConfig.guiFactor() * ScaleConfig.inventoryFactor();
         pose.translate(width / 2.0, height / 2.0, 0);
         pose.scale(scale, scale, 1.0f);
         pose.translate(-width / 2.0, -height / 2.0, 0);
@@ -64,7 +64,7 @@ public abstract class InventoryScaleMixin {
 
     @ModifyVariable(method = "mouseClicked", at = @At("HEAD"), argsOnly = true, ordinal = 0)
     private double customuiscale$inventoryMouseX(double x) {
-        return width / 2.0 + (x - width / 2.0) / ScaleConfig.inventoryFactor();
+        return width / 2.0 + (x - width / 2.0) / (ScaleConfig.guiFactor() * ScaleConfig.inventoryFactor());
     }
 
     @ModifyVariable(method = "mouseClicked", at = @At("HEAD"), argsOnly = true, ordinal = 1)
