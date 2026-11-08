@@ -50,7 +50,9 @@ public final class ScaleConfig {
     }
 
     public static float inventoryFactor() {
-        return 0.60f + (inventoryScale() - 1) * 0.10f;
+        float sliderFactor = 0.60f + (inventoryScale() - 1) * 0.10f;
+        double vanillaScale = net.minecraft.client.Minecraft.getInstance().getWindow().getGuiScale();
+        return (float)(sliderFactor * vanillaScale / 3.0);
     }
 
     private static int clamp(int v, int min, int max) {
