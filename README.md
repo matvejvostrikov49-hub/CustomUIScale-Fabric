@@ -1,22 +1,23 @@
 # Custom UI Scale (Fabric)
 
-Fabric client-side mod for independent interface scaling.
+Client-side Fabric mod that provides separate interface and inventory scale controls.
 
-## Target versions
-- Minecraft 1.21.4
-- Minecraft 1.21.11
+## Supported Minecraft versions
+- 1.21.4
+- 1.21.11
 
-## Planned controls
-- Graphics settings: UI scale slider from 1 to 10 (10 maps to vanilla GUI scale 3).
-- Inventory screen: independent slider from 1 to 5 (5 maps to vanilla GUI scale 3).
-- Persist both values independently.
-- Do not modify Sodium configuration or depend on Sodium internals.
+## Controls
+- Video Settings: custom UI scale slider from 1 to 10. Value 10 targets the size of vanilla GUI Scale 3.
+- Inventory screen: independent scale slider from 1 to 5. Value 5 is the unscaled inventory size.
+- Both values are saved independently in `config/customuiscale.json`.
+- The mod does not edit Sodium's configuration or call Sodium internals.
 
-## Build
-GitHub Actions builds each Minecraft target separately. Successful JARs will be attached to the workflow run as artifacts.
+## Build artifacts
+Each successful GitHub Actions run publishes two downloadable artifacts:
+- `customuiscale-mc-1.21.4`
+- `customuiscale-mc-1.21.11`
 
-## Compatibility note
-Sodium compatibility is a goal; it is not claimed as verified until tested in-game on both target versions.
+Open the Actions tab, select a successful **Build Fabric mod** run, then download the matching artifact.
 
-## Development status
-Repository initialized. Rendering/input transforms and in-game controls are not implemented yet. This initial commit is a buildable project scaffold, not a finished playable mod.
+## Compatibility
+The project compiles successfully for both target versions. The mod is client-side and does not depend on Sodium. Full in-game testing with Sodium on both versions is still required before claiming verified compatibility.
