@@ -44,7 +44,7 @@ public abstract class InventoryScaleMixin12111 {
         double x = width / 2.0 + (event.x() - width / 2.0) / (ScaleConfig.inventoryFactor());
         double y = height / 2.0 + (event.y() - height / 2.0) / (ScaleConfig.inventoryFactor());
         int centerX = width / 2;
-        int sliderY = Math.min(height - 14, height / 2 + imageHeight / 2 + 10);
+        int sliderY = Math.min(height - 14, height / 2 + 93);
         int left = centerX - 38;
         if (x >= left - 5 && x <= left + 81 && y >= sliderY - 8 && y <= sliderY + 9) {
             ScaleConfig.setInventoryScale(Math.max(1, Math.min(5, (int)Math.round((x - left) / 19.0) + 1)));
