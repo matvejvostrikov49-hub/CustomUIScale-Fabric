@@ -71,7 +71,7 @@ public abstract class InventoryScaleMixin {
 
     @ModifyVariable(method = "mouseReleased", at = @At("HEAD"), argsOnly = true, ordinal = 0)
     private double customuiscale$inventoryReleaseX(double x) {
-        return width / 2.0 + (x - width / 2.0) / ScaleConfig.inventoryFactor();
+        return width / 2.0 + (x - width / 2.0) / (ScaleConfig.guiFactor() * ScaleConfig.inventoryFactor());
     }
 
     @ModifyVariable(method = "mouseReleased", at = @At("HEAD"), argsOnly = true, ordinal = 1)
