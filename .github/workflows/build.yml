@@ -8,6 +8,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: customuiscale-build-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
     name: Minecraft ${{ matrix.minecraft }}
