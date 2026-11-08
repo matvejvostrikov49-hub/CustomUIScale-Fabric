@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "dev.customuiscale.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "ScreenScaleMixin",
+    "InventoryScaleMixin",
+    "VideoSettingsMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
