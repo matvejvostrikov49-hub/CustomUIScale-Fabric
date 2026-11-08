@@ -7,7 +7,7 @@
   "authors": ["CustomUIScale contributors"],
   "license": "MIT",
   "environment": "client",
-  "mixins": [ "customuiscale.mixins.json" ],
+  "mixins": [ "${mixin_config}" ],
   "entrypoints": {
     "client": [
       "dev.customuiscale.CustomUIScaleClient"
