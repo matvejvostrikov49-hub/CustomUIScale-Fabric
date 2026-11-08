@@ -8,7 +8,7 @@ Client-side Fabric mod that provides separate interface and inventory scale cont
 
 ## Controls
 - Video Settings: custom UI scale slider from 1 to 10. Value 10 targets the size of vanilla GUI Scale 3.
-- Inventory screen: independent scale slider from 1 to 5. Value 5 is the unscaled inventory size.
+- Inventory screen: independent scale slider from 1 to 5. Value 5 targets the size of vanilla GUI Scale 3.
 - Both values are saved independently in `config/customuiscale.json`.
 - The mod does not edit Sodium's configuration or call Sodium internals.
 
