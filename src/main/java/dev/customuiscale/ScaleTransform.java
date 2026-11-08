@@ -33,10 +33,19 @@ public final class ScaleTransform {
     }
 
     private static void invokeXY(Object target, String name, float x, float y, float z) {
+        boolean twoDimensional = target.getClass().getSimpleName().equals("Matrix3x2fStack");
         for (Method method : target.getClass().getMethods()) {
             if (!method.getName().equals(name)) continue;
             Class<?>[] types = method.getParameterTypes();
-            if (types.length == 3) {
+            if (twoDimensional && types.length == 2) {
+                try {
+                    method.invoke(target, x, y);
+                    return;
+                } catch (ReflectiveOperationException e) {
+                    throw new IllegalStateException("Could not invoke matrix stack method " + name, e);
+                }
+            }
+            if (!twoDimensional && types.length == 3) {
                 try {
                     Object a = types[0] == double.class ? (double)x : x;
                     Object b = types[1] == double.class ? (double)y : y;
