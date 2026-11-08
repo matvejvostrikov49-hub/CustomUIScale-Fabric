@@ -23,9 +23,11 @@ jobs:
           - minecraft: "1.21.4"
             loom: "1.14.5"
             loader: "0.16.10"
+            mixin_config: "customuiscale.mixins.json"
           - minecraft: "1.21.11"
             loom: "1.14.5"
             loader: "0.18.1"
+            mixin_config: "customuiscale-1.21.11.mixins.json"
 
     steps:
       - uses: actions/checkout@v4
@@ -39,7 +41,7 @@ jobs:
         with:
           gradle-version: "9.2.0"
       - name: Build
-        run: gradle build --no-daemon -Pminecraft_version=${{ matrix.minecraft }} -Ploom_version=${{ matrix.loom }} -Ploader_version=${{ matrix.loader }}
+        run: gradle build --no-daemon -Pminecraft_version=${{ matrix.minecraft }} -Ploom_version=${{ matrix.loom }} -Ploader_version=${{ matrix.loader }} -Pmixin_config=${{ matrix.mixin_config }}
       - name: Upload JAR
         uses: actions/upload-artifact@v4
         with:
