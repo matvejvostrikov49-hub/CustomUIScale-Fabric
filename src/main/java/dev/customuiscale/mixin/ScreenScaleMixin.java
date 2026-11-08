@@ -78,4 +78,24 @@ public abstract class ScreenScaleMixin {
     private double customuiscale$releaseY(double y) {
         return height / 2.0 + (y - height / 2.0) / ScaleConfig.guiFactor();
     }
+    @ModifyVariable(method = "mouseDragged", at = @At("HEAD"), argsOnly = true, ordinal = 0)
+    private double customuiscale$dragX(double x) {
+        return width / 2.0 + (x - width / 2.0) / ScaleConfig.guiFactor();
+    }
+
+    @ModifyVariable(method = "mouseDragged", at = @At("HEAD"), argsOnly = true, ordinal = 1)
+    private double customuiscale$dragY(double y) {
+        return height / 2.0 + (y - height / 2.0) / ScaleConfig.guiFactor();
+    }
+
+    @ModifyVariable(method = "render", at = @At("HEAD"), argsOnly = true, ordinal = 0)
+    private int customuiscale$renderMouseX(int x) {
+        return (int)Math.round(width / 2.0 + (x - width / 2.0) / ScaleConfig.guiFactor());
+    }
+
+    @ModifyVariable(method = "render", at = @At("HEAD"), argsOnly = true, ordinal = 1)
+    private int customuiscale$renderMouseY(int y) {
+        return (int)Math.round(height / 2.0 + (y - height / 2.0) / ScaleConfig.guiFactor());
+    }
+
 }
