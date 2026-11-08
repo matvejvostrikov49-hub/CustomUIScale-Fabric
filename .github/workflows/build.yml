@@ -9,7 +9,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: customuiscale-build-${{ github.ref }}
+  group: customuiscale-build-v2-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
