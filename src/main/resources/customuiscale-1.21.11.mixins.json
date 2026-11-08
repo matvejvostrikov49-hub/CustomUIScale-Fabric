@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "dev.customuiscale.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "ScreenScaleMixin12111",
+    "ContainerEventHandlerScaleMixin12111",
+    "InventoryScaleMixin12111"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
