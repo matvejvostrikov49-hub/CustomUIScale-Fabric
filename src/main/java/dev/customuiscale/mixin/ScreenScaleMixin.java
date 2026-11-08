@@ -1,7 +1,7 @@
 package dev.customuiscale.mixin;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import dev.customuiscale.ScaleConfig;
+import dev.customuiscale.ScaleTransform;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
@@ -22,12 +22,7 @@ public abstract class ScreenScaleMixin {
 
     @Inject(method = "render", at = @At("HEAD"))
     private void customuiscale$beginScale(GuiGraphics graphics, int mouseX, int mouseY, float delta, CallbackInfo ci) {
-        PoseStack pose = graphics.pose();
-        pose.pushPose();
-        float scale = ScaleConfig.guiFactor();
-        pose.translate(width / 2.0, height / 2.0, 0);
-        pose.scale(scale, scale, 1.0f);
-        pose.translate(-width / 2.0, -height / 2.0, 0);
+        ScaleTransform.push(graphics, width, height, ScaleConfig.guiFactor());
     }
 
     @Inject(method = "render", at = @At("TAIL"))
@@ -42,7 +37,7 @@ public abstract class ScreenScaleMixin {
             graphics.fill(left, y, left + (value - 1) * 12, y + 3, 0xFF55AAFF);
             graphics.fill(left + (value - 1) * 12 - 2, y - 2, left + (value - 1) * 12 + 3, y + 5, 0xFFFFFFFF);
         }
-        graphics.pose().popPose();
+        ScaleTransform.pop(graphics);
     }
 
     @Inject(method = "mouseClicked", at = @At("HEAD"), cancellable = true)
