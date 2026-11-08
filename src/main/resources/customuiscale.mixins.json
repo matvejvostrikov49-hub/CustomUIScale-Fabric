@@ -4,6 +4,8 @@
   "compatibilityLevel": "JAVA_21",
   "client": [
     "ScreenScaleMixin",
+    "ContainerEventHandlerScaleMixin1214",
+    "VideoSettingsInputMixin1214",
     "InventoryScaleMixin"
   ],
   "injectors": {
