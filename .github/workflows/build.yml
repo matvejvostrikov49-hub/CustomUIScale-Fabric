@@ -1,0 +1,43 @@
+name: Build Fabric mod
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Minecraft ${{ matrix.minecraft }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - minecraft: "1.21.4"
+            loom: "1.9.2"
+            loader: "0.16.10"
+          - minecraft: "1.21.11"
+            loom: "1.14.5"
+            loader: "0.18.1"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+      - name: Build
+        run: gradle build --no-daemon -Pminecraft_version=${{ matrix.minecraft }} -Ploom_version=${{ matrix.loom }} -Ploader_version=${{ matrix.loader }}
+      - name: Upload JAR
+        uses: actions/upload-artifact@v4
+        with:
+          name: customuiscale-mc-${{ matrix.minecraft }}
+          path: build/libs/*.jar
+          if-no-files-found: error
