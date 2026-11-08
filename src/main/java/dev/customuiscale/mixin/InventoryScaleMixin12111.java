@@ -19,7 +19,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class InventoryScaleMixin12111 {
     @Shadow public int width;
     @Shadow public int height;
-    @Shadow protected int imageHeight;
 
     @Inject(method = "render", at = @At("HEAD"))
     private void customuiscale$beginInventoryScale(GuiGraphics graphics, int mouseX, int mouseY, float delta, CallbackInfo ci) {
@@ -29,7 +28,7 @@ public abstract class InventoryScaleMixin12111 {
     @Inject(method = "render", at = @At("TAIL"))
     private void customuiscale$endInventoryScale(GuiGraphics graphics, int mouseX, int mouseY, float delta, CallbackInfo ci) {
         int centerX = width / 2;
-        int y = Math.min(height - 14, height / 2 + imageHeight / 2 + 10);
+        int y = Math.min(height - 14, height / 2 + 93);
         int left = centerX - 38;
         int value = ScaleConfig.inventoryScale();
         graphics.drawString(Minecraft.getInstance().font, Component.literal("Inventory " + value + "/5"), centerX - 36, y - 10, 0xFFFFFF, true);
