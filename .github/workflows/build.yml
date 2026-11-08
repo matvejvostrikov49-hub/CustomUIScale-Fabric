@@ -17,7 +17,7 @@ jobs:
       matrix:
         include:
           - minecraft: "1.21.4"
-            loom: "1.9.2"
+            loom: "1.14.5"
             loader: "0.16.10"
           - minecraft: "1.21.11"
             loom: "1.14.5"
@@ -33,7 +33,7 @@ jobs:
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
-          gradle-version: "8.14.3"
+          gradle-version: "9.0.0"
       - name: Build
         run: gradle build --no-daemon -Pminecraft_version=${{ matrix.minecraft }} -Ploom_version=${{ matrix.loom }} -Ploader_version=${{ matrix.loader }}
       - name: Upload JAR
