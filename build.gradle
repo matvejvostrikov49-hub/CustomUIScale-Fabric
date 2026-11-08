@@ -40,6 +40,8 @@ sourceSets {
             } else if (project.minecraft_version == "1.21.11") {
                 exclude "**/ScreenScaleMixin.java"
                 exclude "**/InventoryScaleMixin.java"
+                exclude "**/ContainerEventHandlerScaleMixin1214.java"
+                exclude "**/VideoSettingsInputMixin1214.java"
             }
         }
     }
