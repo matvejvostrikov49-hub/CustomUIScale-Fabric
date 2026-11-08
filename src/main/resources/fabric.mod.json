@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "customuiscale",
+  "version": "${version}",
+  "name": "Custom UI Scale",
+  "description": "Independent GUI and inventory scaling controls.",
+  "authors": ["CustomUIScale contributors"],
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "dev.customuiscale.CustomUIScaleClient"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": "=${minecraft_version}",
+    "java": ">=21"
+  }
+}
