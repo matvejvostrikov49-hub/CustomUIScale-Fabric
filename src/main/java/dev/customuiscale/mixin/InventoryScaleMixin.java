@@ -66,7 +66,7 @@ public abstract class InventoryScaleMixin {
 
     @ModifyVariable(method = "mouseClicked", at = @At("HEAD"), argsOnly = true, ordinal = 1)
     private double customuiscale$inventoryMouseY(double y) {
-        return height / 2.0 + (y - height / 2.0) / ScaleConfig.inventoryFactor();
+        return height / 2.0 + (y - height / 2.0) / (ScaleConfig.guiFactor() * ScaleConfig.inventoryFactor());
     }
 
     @ModifyVariable(method = "mouseReleased", at = @At("HEAD"), argsOnly = true, ordinal = 0)
@@ -78,4 +78,24 @@ public abstract class InventoryScaleMixin {
     private double customuiscale$inventoryReleaseY(double y) {
         return height / 2.0 + (y - height / 2.0) / ScaleConfig.inventoryFactor();
     }
+    @ModifyVariable(method = "mouseDragged", at = @At("HEAD"), argsOnly = true, ordinal = 0)
+    private double customuiscale$inventoryDragX(double x) {
+        return width / 2.0 + (x - width / 2.0) / (ScaleConfig.guiFactor() * ScaleConfig.inventoryFactor());
+    }
+
+    @ModifyVariable(method = "mouseDragged", at = @At("HEAD"), argsOnly = true, ordinal = 1)
+    private double customuiscale$inventoryDragY(double y) {
+        return height / 2.0 + (y - height / 2.0) / (ScaleConfig.guiFactor() * ScaleConfig.inventoryFactor());
+    }
+
+    @ModifyVariable(method = "render", at = @At("HEAD"), argsOnly = true, ordinal = 0)
+    private int customuiscale$inventoryRenderMouseX(int x) {
+        return (int)Math.round(width / 2.0 + (x - width / 2.0) / (ScaleConfig.guiFactor() * ScaleConfig.inventoryFactor()));
+    }
+
+    @ModifyVariable(method = "render", at = @At("HEAD"), argsOnly = true, ordinal = 1)
+    private int customuiscale$inventoryRenderMouseY(int y) {
+        return (int)Math.round(height / 2.0 + (y - height / 2.0) / (ScaleConfig.guiFactor() * ScaleConfig.inventoryFactor()));
+    }
+
 }
