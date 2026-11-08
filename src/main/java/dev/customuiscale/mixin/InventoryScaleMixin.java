@@ -71,7 +71,7 @@ public abstract class InventoryScaleMixin {
 
     @ModifyVariable(method = "mouseReleased", at = @At("HEAD"), argsOnly = true, ordinal = 1)
     private double customuiscale$inventoryReleaseY(double y) {
-        return height / 2.0 + (y - height / 2.0) / ScaleConfig.inventoryFactor();
+        return height / 2.0 + (y - height / 2.0) / (ScaleConfig.guiFactor() * ScaleConfig.inventoryFactor());
     }
     @ModifyVariable(method = "mouseDragged", at = @At("HEAD"), argsOnly = true, ordinal = 0)
     private double customuiscale$inventoryDragX(double x) {
@@ -91,6 +91,16 @@ public abstract class InventoryScaleMixin {
     @ModifyVariable(method = "render", at = @At("HEAD"), argsOnly = true, ordinal = 1)
     private int customuiscale$inventoryRenderMouseY(int y) {
         return (int)Math.round(height / 2.0 + (y - height / 2.0) / (ScaleConfig.guiFactor() * ScaleConfig.inventoryFactor()));
+    }
+
+    @ModifyVariable(method = "mouseScrolled", at = @At("HEAD"), argsOnly = true, ordinal = 0)
+    private double customuiscale$inventoryScrollX(double x) {
+        return width / 2.0 + (x - width / 2.0) / (ScaleConfig.guiFactor() * ScaleConfig.inventoryFactor());
+    }
+
+    @ModifyVariable(method = "mouseScrolled", at = @At("HEAD"), argsOnly = true, ordinal = 1)
+    private double customuiscale$inventoryScrollY(double y) {
+        return height / 2.0 + (y - height / 2.0) / (ScaleConfig.guiFactor() * ScaleConfig.inventoryFactor());
     }
 
 }
