@@ -32,11 +32,7 @@ public abstract class InventoryScaleMixin {
 
     @Inject(method = "render", at = @At("TAIL"))
     private void customuiscale$endInventoryScale(GuiGraphics graphics, int mouseX, int mouseY, float delta, CallbackInfo ci) {
-        graphics.pose().popPose();
-    }
-
-    @Inject(method = "render", at = @At("TAIL"))
-    private void customuiscale$drawInventorySlider(GuiGraphics graphics, int mouseX, int mouseY, float delta, CallbackInfo ci) {
+        // Draw the control while the inventory transform is still active.
         int centerX = width / 2;
         int y = Math.min(height - 14, height / 2 + imageHeight / 2 + 10);
         int left = centerX - 38;
@@ -45,6 +41,7 @@ public abstract class InventoryScaleMixin {
         graphics.fill(left, y, left + 76, y + 3, 0xFF555555);
         graphics.fill(left, y, left + (value - 1) * 19, y + 3, 0xFF55AAFF);
         graphics.fill(left + (value - 1) * 19 - 2, y - 2, left + (value - 1) * 19 + 3, y + 5, 0xFFFFFFFF);
+        graphics.pose().popPose();
     }
 
     @Inject(method = "mouseClicked", at = @At("HEAD"), cancellable = true)
