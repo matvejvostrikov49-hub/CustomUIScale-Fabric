@@ -43,6 +43,22 @@ public interface ContainerEventHandlerScaleMixin12111 {
         return map(event);
     }
 
+    @ModifyVariable(method = "mouseScrolled", at = @At("HEAD"), argsOnly = true, ordinal = 0)
+    private double customuiscale$mapScrollX(double x) {
+        if ((Object)this instanceof net.minecraft.client.gui.screens.Screen screen) {
+            return screen.width / 2.0 + (x - screen.width / 2.0) / ScaleConfig.guiFactor();
+        }
+        return x;
+    }
+
+    @ModifyVariable(method = "mouseScrolled", at = @At("HEAD"), argsOnly = true, ordinal = 1)
+    private double customuiscale$mapScrollY(double y) {
+        if ((Object)this instanceof net.minecraft.client.gui.screens.Screen screen) {
+            return screen.height / 2.0 + (y - screen.height / 2.0) / ScaleConfig.guiFactor();
+        }
+        return y;
+    }
+
     private MouseButtonEvent map(MouseButtonEvent event) {
         double x = event.x();
         double y = event.y();
